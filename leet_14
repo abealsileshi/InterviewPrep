@@ -1,0 +1,37 @@
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        String prefx = "";
+        String temp = "";
+        int round = 0; //counts rounds in for loop
+        Set<String> mySet = new HashSet<>();
+        Iterator<String> it = mySet.iterator();
+
+      
+        for(int i = 0; i < strs.length; i++){
+            temp = strs[i];
+            //case if there is a blank string in array
+            if(temp == ""){
+                return "";
+            }
+            if(round > temp.length() -1){
+                return prefx;
+            }
+            mySet.add(String.valueOf(temp.charAt(round)));
+            System.out.println(mySet);
+            //at the end of the for loop
+            if(i == strs.length - 1 && mySet.size() ==1){
+                i = 0; //reset the forloop
+                if(it.hasNext() == true){
+                    prefx = prefx + it.next();
+                }
+                mySet.clear();
+                round++;
+            }
+            else{
+                prefx = strs[0].substring(0, round); // Extracts 
+            }
+        }
+    
+        return prefx;
+    }
+}
